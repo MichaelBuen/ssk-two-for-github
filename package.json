@@ -1,0 +1,42 @@
+{
+  "name": "hot-typescript",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "$(npm bin)/webpack-dev-server --hot"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "html-webpack-plugin": "^2.30.1",
+    "tslint": "^5.9.1",
+    "typescript": "^2.6.2",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.7"
+  },
+  "dependencies": {
+    "@types/react": "^16.0.31",
+    "@types/react-dom": "^16.0.3",
+    "@types/react-redux": "^5.0.15",
+    "@types/redux-first-router": "^1.10.2",
+    "@types/redux-first-router-link": "^1.4.3",
+    "@types/webpack-env": "^1.13.5",
+    "awesome-typescript-loader": "3.4.1",
+    "base-href-webpack-plugin": "^1.0.2",
+    "expose-loader": "^0.7.5",
+    "history": "^4.7.2",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-hot-loader": "^4.0.0-beta.22",
+    "react-redux": "^5.0.7",
+    "redux": "^3.7.2",
+    "redux-first-router": "^0.0.16-next",
+    "redux-first-router-link": "^1.4.2",
+    "source-map-loader": "^0.2.3",
+    "string-replace-loader": "^2.1.1",
+    "tslint-react": "^3.5.1"
+  }
+}

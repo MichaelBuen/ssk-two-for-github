@@ -1,0 +1,30 @@
+{
+  "extends": [
+    "tslint:latest",
+    "tslint-react"
+  ],
+  "rules": {
+    "jsx-wrap-multiline": false,
+    "jsx-no-multiline-js": false,
+    "no-trailing-whitespace": false,
+    "no-consecutive-blank-lines": [
+      true,
+      2
+    ],
+    "quotemark": [
+      true,
+      "single"
+    ],
+    "trailing-comma": false,
+    "one-line": [
+      false
+    ],
+    "object-literal-sort-keys": false,
+    "arrow-parens": false,
+    "no-var-requires": true,
+    "max-classes-per-file": [
+      2
+    ],
+    "semicolon": [true, "ignore-bound-class-methods"]
+  }
+}

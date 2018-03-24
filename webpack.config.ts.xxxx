@@ -1,0 +1,56 @@
+/* eslint-disable */
+import * as path from 'path';
+
+// noinspection TsLint
+import * as webpack from 'webpack';
+
+// noinspection TsLint
+import * as HtmlWebpackPlugin from 'html-webpack-plugin';
+
+const entries: {[entryName: string]: string[] | string} = {
+    index: ['./index.tsx']
+};
+
+const config: webpack.Configuration = {
+    context  : path.join(__dirname, 'front-end'),
+    entry    : entries,
+    output   : {
+        path         : path.join(__dirname, 'dist--front-end'),
+        filename     : '[name].js',
+        chunkFilename: '[id].chunk.js'
+    },
+    module   : {
+        // loaders: [
+        //     {
+        //         test  : /\.tsx?$/,
+        //         loader: 'awesome-typescript-loader'
+        //     }
+        // ],
+        rules: [
+            {
+                test: /\.tsx?$/,
+                // babel-loader is needed by react-hot-loader for it to work
+                use: ['ts-loader'],
+            }
+        ],
+    },
+    resolve  : {
+        extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    },
+    plugins  : [
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            title   : 'Ssk',
+            template: '../template/index.html'
+        }),
+        // new webpack.NamedModulesPlugin(),
+    ],
+    devServer: {
+        historyApiFallback: {
+            index: '/index.html'
+        }
+    }
+};
+
+
+export default config;
