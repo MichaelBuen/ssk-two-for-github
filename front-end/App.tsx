@@ -44,7 +44,7 @@ class App extends React.Component<IComponentProps, {}>
             <h1>
                 Hello, World.<br/>
                 <button type='button' onClick={this.props.increment}>Increment</button>
-                <button type='button' onClick={this.props.increment}>Decrement</button>
+                <button type='button' onClick={this.props.decrement}>Decrement</button>
                 &nbsp; {this.props.rootState.counter}
                 <br/>
                 <Link to='/'>Home sweet home.</Link><br/>
