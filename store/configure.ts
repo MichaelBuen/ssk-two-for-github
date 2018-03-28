@@ -1,40 +1,19 @@
-import { connectRoutes } from 'redux-first-router';
+import { applyMiddleware, compose, createStore, Store } from 'redux';
 
-import { applyMiddleware, combineReducers, compose, createStore, Reducer } from 'redux';
-
-// import createHistory from 'history/createBrowserHistory';
-import { createBrowserHistory as createHistory } from 'history';
+import combinedReducers, { enhancer, middleware } from './combined-reducers';
 
 import IRootState from './models/_i-root-state';
-import routesMap from './routers/routes-map';
-
-import counterReducer from './reducers/counter-reducer';
-import companyComponentReducer from './routers/company/reducer';
-import userIdReducer from './routers/user-id/reducer';
 
 
-const history = createHistory();
+export default function configureStore(): Store<IRootState>
+{
+    const middlewares = applyMiddleware(middleware);
 
-const {reducer: locationReducer, middleware, enhancer} = connectRoutes(history, routesMap);
+    // noinspection TsLint
+    const composeEnhancers = (window as any)['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] || compose;
+    const composed         = composeEnhancers(enhancer, middlewares);
 
-const reducers: {[name in keyof IRootState]: Reducer<any>} = {
-    userId: userIdReducer,
-    location: locationReducer,
-    company: companyComponentReducer,
-    counter: counterReducer
-};
+    const store = createStore<IRootState>(combinedReducers, composed);
 
-
-const rootReducer = combineReducers<IRootState>(reducers);
-
-const middlewares = applyMiddleware(middleware);
-
-// noinspection TsLint
-const composeEnhancers = (window as any)['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] || compose;
-const composed = composeEnhancers(enhancer, middlewares);
-
-
-const store = createStore<IRootState>(rootReducer, composed);
-
-export default store;
-
+    return store;
+}

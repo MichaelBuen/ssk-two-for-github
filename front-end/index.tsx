@@ -8,12 +8,15 @@ import * as ReactDOM from 'react-dom';
 import RootContainer from './App';
 
 import { Provider } from 'react-redux';
-import store from '../store/configure';
+import configureStore from '../store/configure';
 
 import { AppContainer as HotLoaderAppContainer } from 'react-hot-loader';
 
 
 const root = document.getElementById('root');
+
+const store = configureStore();
+
 
 function render(Component: React.ComponentType): void
 {
