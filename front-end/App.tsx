@@ -10,6 +10,9 @@ import { IUserAction } from '../store/routers/user-id/action';
 
 import Routes from '../store/routers/routes';
 
+import { hot } from 'react-hot-loader';
+import { CounterKind, ICounterAction } from '../store/reducers/counter-reducer';
+
 interface IComponentStates
 {
     rootState: IRootState;
@@ -18,6 +21,8 @@ interface IComponentStates
 interface IComponentDispatches
 {
     goToUser(userId: number): void;
+    increment(): void;
+    decrement(): void;
 }
 
 
@@ -38,6 +43,10 @@ class App extends React.Component<IComponentProps, {}>
         return (
             <h1>
                 Hello, World.<br/>
+                <button type='button' onClick={this.props.increment}>Increment</button>
+                <button type='button' onClick={this.props.increment}>Decrement</button>
+                &nbsp; {this.props.rootState.counter}
+                <br/>
                 <Link to='/'>Home sweet home.</Link><br/>
                 <Counter /><br/>
                 Hello, World again.<br/>
@@ -71,10 +80,16 @@ function mapStateToProps(state: IRootState): IComponentStates
     return props;
 }
 
-const mapDispatchToProps = (dispatch: (action: IUserAction) => void) =>
+
+type ActionsUsed = IUserAction | ICounterAction;
+
+const mapDispatchToProps = (dispatch: (action: ActionsUsed) => void): IComponentDispatches =>
     ({
-        goToUser: (userId: number): void => dispatch({type: Routes.USER, payload: {id: userId}})
+        goToUser: (userId: number): void => dispatch({type: Routes.USER, payload: {id: userId}}),
+        increment: (): void => dispatch({type: CounterKind.INCREMENT}),
+        decrement: (): void => dispatch({type: CounterKind.DECREMENT})
     });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
-
+export default hot(module)(
+    connect(mapStateToProps, mapDispatchToProps)(App)
+);

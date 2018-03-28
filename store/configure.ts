@@ -8,6 +8,7 @@ import { createBrowserHistory as createHistory } from 'history';
 import IRootState from './models/_i-root-state';
 import routesMap from './routers/routes-map';
 
+import counterReducer from './reducers/counter-reducer';
 import companyComponentReducer from './routers/company/reducer';
 import userIdReducer from './routers/user-id/reducer';
 
@@ -19,7 +20,8 @@ const {reducer: locationReducer, middleware, enhancer} = connectRoutes(history, 
 const reducers: {[name in keyof IRootState]: Reducer<any>} = {
     userId: userIdReducer,
     location: locationReducer,
-    company: companyComponentReducer
+    company: companyComponentReducer,
+    counter: counterReducer
 };
 
 

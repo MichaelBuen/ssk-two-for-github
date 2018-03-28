@@ -8,4 +8,6 @@ export default interface IRootState
     location: LocationState;
 
     company: ICompanyComponent;
+
+    counter: number;
 }

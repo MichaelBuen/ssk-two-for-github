@@ -10,6 +10,9 @@ import { IUserAction } from '../store/routers/user-id/action';
 
 import Routes from '../store/routers/routes';
 
+import { hot } from 'react-hot-loader';
+
+
 interface IComponentStates
 {
     rootState: IRootState;
@@ -33,11 +36,11 @@ class App extends React.Component<IComponentProps, {}>
         super(props);
     }
 
-    public render(): JSX.Element
+    public render(): React.ReactNode
     {
         return (
             <div>
-                Hello, you are great.<br/>
+                Hello, you are great and awesome.<br/>
                 Company: {this.props.rootState.company.companyCode}<br/>
 
                 <button onClick={this.goToUser520}>Go to user 520</button><br/>
@@ -60,9 +63,11 @@ function mapStateToProps(state: IRootState): IComponentStates
     return props;
 }
 
-const mapDispatchToProps = (dispatch: (action: IUserAction) => void) =>
+const mapDispatchToProps = (dispatch: (action: IUserAction) => void): IComponentDispatches =>
     ({
         goToUser: (userId: number): void => dispatch({type: Routes.USER, payload: {id: userId}})
     });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default hot(module)(
+    connect(mapStateToProps, mapDispatchToProps)(App)
+);
